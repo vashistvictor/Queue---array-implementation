@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct queue
+{
+    int size;
+    int r;
+    int f;
+    int *arr;
+};
+
+int isFull(struct queue *q)
+{
+    if(q->r == q->size - 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void enque(struct queue *q, int val)
+{
+    if(isFull(q))
+    {
+        printf("queue has no empty space\n");
+    }
+    else
+    {
+        q->r = q->r + 1;
+        q->arr[q->r] = val;
+        printf("inserted element is :%d\n",q->arr[q->r]);
+    }
+}
+
+void deque(struct queue *q)
+{
+    if(q->r == q->f)
+    {
+        printf("queue is empty\n");
+    }
+    else
+    {
+        q->f = q->f + 1;
+        printf("deleted element is :%d\n",q->arr[q->f]);
+    }
+}
+
+int main()
+{
+    struct queue *q;
+    q = (struct queue*)malloc(sizeof(struct queue));
+    q->size = 8;
+    q->r = -1;
+    q->f = -1;
+    q->arr = (int*)malloc(q->size * sizeof(int));
+    enque(q,5);
+    enque(q,7);
+    enque(q,15);
+    enque(q,1);
+    deque(q);
+    enque(q,22); 
+    enque(q,53);
+    enque(q,51);
+    deque(q);
+    deque(q);
+    deque(q);
+    deque(q);
+    deque(q);
+    deque(q);
+    deque(q);
+    enque(q,53);
+    enque(q,51);enque(q,23);enque(q,43);enque(q,53);enque(q,54);enque(q,23);enque(q,58);enque(q,13);enque(q,93);
+    return 0;
+}
